@@ -7,7 +7,8 @@ C_FLAGS		= -Wall -Wextra -Werror
 S_FLAGS		= -f macho64
 
 SRC 		= ft_strlen \
-				ft_strcpy
+				ft_strcpy \
+				ft_strcmp
 
 FILES 		= $(addsuffix .s, $(SRC))
 OBJ			= $(FILES:.s=.o)
