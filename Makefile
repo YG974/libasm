@@ -9,8 +9,8 @@ S_FLAGS		= -f macho64
 SRC 		= ft_strlen \
 				ft_strcpy \
 				ft_strcmp \
-				ft_write #\
-				#ft_read \
+				ft_write \
+				ft_read 
 				#ft_strdup
 
 FILES 		= $(addsuffix .s, $(SRC))
