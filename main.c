@@ -48,6 +48,7 @@ void	ft_write_test(int fildes, const void *buf, size_t nbyte)
 	printf("\nreturn = %d\n", (int)d);
 	return ;
 }
+
 void	ft_read_test(char *file, size_t nbyte)
 {
 	size_t	d;
@@ -77,6 +78,19 @@ void	ft_read_test(char *file, size_t nbyte)
 	printf("\nreturn = %d\n", (int)d);
 	close(fd);
 	return ;
+}
+void		ft_strdup_test(const char *s)
+{
+	char		*dst;
+	char		*dst2;
+	
+	printf("src string is :	%s\n", s);
+	printf("1) lib.c strdup function output is:\n");
+	dst = strdup(s);
+	printf("%s\n", dst);
+	dst2 = ft_strdup(s);
+	printf("2) my ft_strdup function output is:\n");
+	printf("%s\n", dst2);
 }
 
 int			main()
@@ -157,5 +171,13 @@ int			main()
 	ft_read_test("norights.txt", 300);
 	printf("----------------------------------------------------\n");
 
+	printf("----------------------------------------------------\n");
+	printf("			TEST OF FT_STRDUP\n");
+	printf("regular string\n");
+	ft_strdup_test("I'm testing my ft_strdup");
+	printf("----------------------------------------------------\n");
+	printf("empty string\n");
+	ft_strdup_test(null);
+	printf("----------------------------------------------------\n");
 	return (0);
 }

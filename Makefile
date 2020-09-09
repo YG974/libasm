@@ -10,8 +10,8 @@ SRC 		= ft_strlen \
 				ft_strcpy \
 				ft_strcmp \
 				ft_write \
-				ft_read 
-				#ft_strdup
+				ft_read \
+				ft_strdup
 
 FILES 		= $(addsuffix .s, $(SRC))
 OBJ			= $(FILES:.s=.o)
