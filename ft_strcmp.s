@@ -1,10 +1,11 @@
 ; C prototype	int		ft_strcmp(const char *s1, const char *s2);
-; BYTE tells the size of the argument (8 bits here)
+; byte tells the size of the argument (8 bits here)
 ; rdi = pointer to 1st arg(dest) inputed in the function 
 ; rsi = pointer to 2nd arg(src) inputed in the function
 ; rcx = my counter
 ; rax is always the return value register
 ; bl is the low byte of the rbx register, here my buffer to save a char
+; bh is the hight byte of the rbx register, here my buffer to save a char
 ; if cmp = 0, compared char = '\0' so it's the end of the string
 
 section .data	; used for declaring initialized data or constants.
@@ -32,5 +33,5 @@ cmp:
 
 end:
 	sub bl, bh	; bl = bl-bh
-	movsx rax, bl	; rax = bl = return, movsx used to mov smaller in bigger reg
+	movsx rax, bl	; rax = bl = return, movsx used to mov smaller reg in bigger
 	ret

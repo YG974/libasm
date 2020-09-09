@@ -36,6 +36,21 @@ void		ft_strcmp_test(const char *s1, const char *s2)
 	printf("2) my ft_strcmp function output is: %d\n", d);
 }
 
+void	ft_write_test(int fildes, const void *buf, size_t nbyte)
+{
+	size_t d;
+	printf("TEST OF FT_WRITE\n");
+	printf("(fd = %u | ", fildes);
+	printf("buffer = '%s' | ", buf);
+	printf("nbyte = %zu)\n", nbyte);
+	printf("1) lib.c write function output is:\n");
+	d = write(fildes, buf, nbyte);
+	printf("\nreturn of function : %d\n", (int)d);
+	printf("2) my ft_write function output is:\n");
+	d = ft_write(fildes, buf, nbyte);
+	printf("\nreturn of function : %d\n", (int)d);
+	return ;
+}
 int			main()
 {
 	char d[3000];
@@ -66,6 +81,14 @@ int			main()
 	ft_strcmp_test("salut les mitos",null);
 	printf("----------------------------------------------------\n");
 	ft_strcmp_test(null, null);
+	printf("----------------------------------------------------\n");
+	ft_write_test(1, "test numero 1", 10);
+	printf("----------------------------------------------------\n");
+	ft_write_test(2, "test numero 1", 12);
+	printf("----------------------------------------------------\n");
+	ft_write_test(1, "len neg", -10);
+	printf("----------------------------------------------------\n");
+	ft_write_test(-1, "fd neg", 10);
 	printf("----------------------------------------------------\n");
 	return (0);
 }

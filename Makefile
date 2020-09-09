@@ -8,7 +8,10 @@ S_FLAGS		= -f macho64
 
 SRC 		= ft_strlen \
 				ft_strcpy \
-				ft_strcmp
+				ft_strcmp \
+				ft_write #\
+				#ft_read \
+				#ft_strdup
 
 FILES 		= $(addsuffix .s, $(SRC))
 OBJ			= $(FILES:.s=.o)
@@ -35,6 +38,6 @@ re: fclean all
 test: $(NAME)
 	$(CC) $(C_FLAGS) -c main.c
 	$(CC) $(C_FLAGS) main.o $(NAME) -o test
-	./test | cat -e
+	./test
 
 .PHONY:            all clean fclean re test
