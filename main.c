@@ -91,15 +91,15 @@ void		ft_strdup_test(const char *s)
 	dst2 = ft_strdup(s);
 	printf("2) my ft_strdup function output is:\n");
 	printf("%s\n", dst2);
+	free(dst);
+	free(dst2);
 }
 
 int			main()
 {
 	char		d[300];
 	char		null[300];
-	const char	*bz;
 
-	bz = 0;
 	null[0] = '\0';
 	printf("----------------------------------------------------\n");
 	printf("			TEST OF MY LIBASM FUNCTIONS\n");
@@ -179,5 +179,6 @@ int			main()
 	printf("empty string\n");
 	ft_strdup_test(null);
 	printf("----------------------------------------------------\n");
+	while(1);
 	return (0);
 }
