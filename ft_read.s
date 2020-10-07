@@ -28,7 +28,9 @@ _ft_read:	; entry-point of the file
 		ret					; return is already put in the rax reg by sysread
 
 error:
+	push rax
 	call ___error
+    pop qword[rax]
 	mov rax, -1; lib.c read return -1 if the read failed
 	ret
 

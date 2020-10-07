@@ -90,11 +90,13 @@ void		ft_strdup_test(const char *s)
 	
 	printf("src string is :	%s\n", s);
 	printf("1) lib.c strdup function output is:\n");
+	errno = 0;
 	dst = strdup(s);
-	printf("%s\n", dst);
+	printf("%s | errno : %d\n", dst, errno);
+	errno = 0;
 	dst2 = ft_strdup(s);
 	printf("2) my ft_strdup function output is:\n");
-	printf("%s\n", dst2);
+	printf("%s | errno : %d\n", dst2, errno);
 	free(dst);
 	free(dst2);
 }

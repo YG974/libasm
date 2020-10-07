@@ -33,7 +33,9 @@ _ft_strdup:	; entry-point of the file
 		ret				;
 
 fail:
-	call ___error
+	push rax
+    call ___error
+    pop qword[rax]
 	mov rax, 0			; put 0 in rax reg because malloc failed
 	ret					; return NULL ptr
 

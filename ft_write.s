@@ -28,7 +28,9 @@ _ft_write:	; entry-point of the file
 		ret					; return is already put in the rax reg by syswrite
 
 error:
+	push rax
 	call ___error
+	pop qword[rax]
 	mov rax, -1; lib.c write return -1 if the write failed
 	ret
 
