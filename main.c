@@ -41,11 +41,13 @@ void	ft_write_test(int fildes, const void *buf, size_t nbyte)
 	printf("buffer = '%s' | ", buf);
 	printf("nbyte = %zu)\n", nbyte);
 	printf("1) lib.c write function output is:\n");
+	errno = 0;
 	d = write(fildes, buf, nbyte);
-	printf("\nreturn = %d\n", (int)d);
+	printf("\nreturn = %d | errno : %d\n", (int)d, errno);
 	printf("2) my ft_write function output is:\n");
+	errno = 0;
 	d = ft_write(fildes, buf, nbyte);
-	printf("\nreturn = %d\n", (int)d);
+	printf("\nreturn = %d | errno : %d\n", (int)d, errno);
 	return ;
 }
 
@@ -66,16 +68,18 @@ void	ft_read_test(char *file, size_t nbyte)
 	if (!(fd = open(file, O_RDONLY)))
 		return ;
 	printf("1) lib.c read function output is:\n");
+	errno = 0;
 	d = read(fd, &b1, nbyte);
 	printf("%s", b1);
-	printf("\nreturn = %d\n", (int)d);
+	printf("\nreturn = %d | errno : %d\n", (int)d, errno);
 	close(fd);
 	if (!(fd = open(file, O_RDONLY)))
 		return ;
 	printf("2) my ft_read function output is:\n");
+	errno = 0;
 	d = ft_read(fd, &b2, nbyte);
 	printf("%s", b2);
-	printf("\nreturn = %d\n", (int)d);
+	printf("\nreturn = %d | errno : %d\n", (int)d, errno);
 	close(fd);
 	return ;
 }
@@ -179,6 +183,5 @@ int			main()
 	printf("empty string\n");
 	ft_strdup_test(null);
 	printf("----------------------------------------------------\n");
-	while(1);
 	return (0);
 }

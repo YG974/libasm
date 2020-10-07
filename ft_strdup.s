@@ -16,6 +16,7 @@ section .text	; used for code. must begin with the global _start,
 		extern _ft_strlen
 		extern _ft_strcpy
 		extern _malloc
+		extern ___error
 
 _ft_strdup:	; entry-point of the file
 		push rdi		; push rdi on the top of the stack, because calling a
@@ -32,6 +33,7 @@ _ft_strdup:	; entry-point of the file
 		ret				;
 
 fail:
+	call ___error
 	mov rax, 0			; put 0 in rax reg because malloc failed
 	ret					; return NULL ptr
 

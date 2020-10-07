@@ -19,6 +19,7 @@ section .bss	; used for declarring variables.
 
 section .text	; used for code. must begin with the global _start,
 		global _ft_read
+		extern ___error
 
 _ft_read:	; entry-point of the file
 		mov rax, 0x2000003	; syscall number to call sysread
@@ -27,6 +28,7 @@ _ft_read:	; entry-point of the file
 		ret					; return is already put in the rax reg by sysread
 
 error:
+	call ___error
 	mov rax, -1; lib.c read return -1 if the read failed
 	ret
 
