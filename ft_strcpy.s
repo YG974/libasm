@@ -11,9 +11,9 @@ section .data	; used for declaring initialized data or constants.
 section .bss	; used for declarring variables.
 
 section .text	; used for code. must begin with the global _start,
-		global _ft_strcpy
+		global ft_strcpy
 
-_ft_strcpy:		; entry-point of the file
+ft_strcpy:		; entry-point of the file
 		mov rcx, 0	;put the value 0 into the rcx register(my counter here)
 
 

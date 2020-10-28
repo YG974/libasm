@@ -13,9 +13,9 @@ section .data	; used for declaring initialized data or constants.
 section .bss	; used for declarring variables.
 
 section .text	; used for code. must begin with the global _start,
-		global _ft_strcmp
+		global ft_strcmp
 
-_ft_strcmp:	; entry-point of the file
+ft_strcmp:	; entry-point of the file
 	mov rax, 0	; rax = 0, my return
 	mov rbx, 0	; rbx = 0, my buffer to compare the chars
 	mov rcx, -1	; rcx = 0, my counter to iterate the strings

@@ -3,9 +3,9 @@ section .data	; used for declaring initialized data or constants.
 section .bss	; used for declarring variables.
 
 section .text	; used for code. must begin with the global _start,
-		global _ft_strlen
+		global ft_strlen
 
-_ft_strlen:		; entry-point of the file
+ft_strlen:		; entry-point of the file
 		mov rax, 0	;put the value 0 into the rax register(my counter here)
 
 ;BYTE tells the size of the argument (8 bits here)

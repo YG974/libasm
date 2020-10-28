@@ -4,7 +4,8 @@ CC			= clang
 NA			= nasm
 
 C_FLAGS		= -Wall -Wextra -Werror
-S_FLAGS		= -f macho64
+S_FLAGS		= -f elf64
+#S_FLAGS		= -f macho64
 
 SRC 		= ft_strlen \
 				ft_strcpy \

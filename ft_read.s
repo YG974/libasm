@@ -18,10 +18,10 @@ section .data	; used for declaring initialized data or constants.
 section .bss	; used for declarring variables.
 
 section .text	; used for code. must begin with the global _start,
-		global _ft_read
-		extern ___error
+		global ft_read
+		extern __errno_location
 
-_ft_read:	; entry-point of the file
+ft_read:	; entry-point of the file
 		mov rax, 0x2000003	; syscall number to call sysread
 		syscall				; call read will take the 3 first inputed args
 		jc error			; CF (carry flag) is set upon when syscall failed
@@ -29,7 +29,7 @@ _ft_read:	; entry-point of the file
 
 error:
 	push rax
-	call ___error
+	call __errno_location
     pop qword[rax]
 	mov rax, -1; lib.c read return -1 if the read failed
 	ret
