@@ -7,6 +7,9 @@ C_FLAGS		= -Wall -Wextra -Werror
 S_FLAGS		= -f elf64
 #S_FLAGS		= -f macho64
 
+SRC_DIR = srcs
+OBJ_DIR = obj
+
 SRC 		= ft_strlen \
 				ft_strcpy \
 				ft_strcmp \
@@ -17,8 +20,11 @@ SRC 		= ft_strlen \
 FILES 		= $(addsuffix .s, $(SRC))
 OBJ			= $(FILES:.s=.o)
 
-%.o: %.s
-	$(NA) $(S_FLAGS) $<
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.s 
+				mkdir -p $(OBJ_DIR)
+				$(NA) $(S_FLAGS) $< -o
+#%.o: %.s
+	#$(NA) $(S_FLAGS) $<
 
 all: $(NAME)
 
