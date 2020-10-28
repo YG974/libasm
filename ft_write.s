@@ -22,15 +22,22 @@ section .text	; used for code. must begin with the global _start,
 		extern __errno_location
 
 ft_write:	; entry-point of the file
-		mov rax, 0x2000004	; syscall number to call syswrite
+		;mov rax, 0x2000004	; syscall number to call syswrite MACOS
+		mov rax, 1			; syscall number to call syswrite LINUX
 		syscall				; call write will take the 3 first inputed args
-		jc error			; CF (carry flag) is set upon when syscall failed
-		ret					; return is already put in the rax reg by syswrite
+
+;Linux
+		cmp			rax, 0	; no carryflag set if syscall fail on linux
+		jl			error	; so jump to error if return < 0
+
+;MacOS
+		;jc error			; CF (carry flag) is set upon when syscall failed
+		ret					; return is already put in the rax reg by sysread
 
 error:
 	push rax
 	call __errno_location
-	pop qword[rax]
-	mov rax, -1; lib.c write return -1 if the write failed
+    pop qword[rax]
+    neg qword[rax]			; the sign of errno is inverted on linux.
+	mov rax, -1; lib.c read return -1 if the read failed
 	ret
-

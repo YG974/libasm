@@ -1,6 +1,6 @@
 ; syscall information of sysread
-;	%rax	System call	| %rdi				| %rsi			| %rdx	
-;	0		sys_read	| unsigned int fd	|	char *buf	| size_t count			
+;	%rax	|System call	| %rdi				| %rsi			| %rdx	
+; 0x2000003	|sys_read	| unsigned int fd	|	char *buf	| size_t count			
 ; C prototype : ssize_t	read(int fildes, void *buf, size_t nbyte);
 ; rdi = pointer to 1st arg inputed in the function
 ; rsi = pointer to 2nd arg inputed in the function
@@ -22,15 +22,23 @@ section .text	; used for code. must begin with the global _start,
 		extern __errno_location
 
 ft_read:	; entry-point of the file
-		mov rax, 0x2000003	; syscall number to call sysread
+		;mov rax, 0x2000003	; syscall number to call sysread MACOS
+		mov rax, 0			; syscall number to call sysread Linux
 		syscall				; call read will take the 3 first inputed args
-		jc error			; CF (carry flag) is set upon when syscall failed
+
+;Linux
+		cmp			rax, 0	; no carryflag set if syscall fail on linux
+		jl			error	; so jump to error if return < 0
+
+;MacOS
+		;jc error			; CF (carry flag) is set upon when syscall failed
 		ret					; return is already put in the rax reg by sysread
 
 error:
 	push rax
 	call __errno_location
     pop qword[rax]
+    neg qword[rax]			; the sign of errno is inverted on linux.
 	mov rax, -1; lib.c read return -1 if the read failed
 	ret
 
