@@ -7,8 +7,9 @@ C_FLAGS		= -Wall -Wextra -Werror
 S_FLAGS		= -f elf64
 #S_FLAGS		= -f macho64
 
-SRC_DIR = srcs
-OBJ_DIR = obj
+SRC_DIR = srcs/
+OBJ_DIR = obj/
+INC_DIR = include/
 
 SRC 		= ft_strlen \
 				ft_strcpy \
@@ -18,19 +19,18 @@ SRC 		= ft_strlen \
 				ft_strdup
 
 FILES 		= $(addsuffix .s, $(SRC))
-OBJ			= $(FILES:.s=.o)
+OBJ			= $(addprefix $(OBJ_DIR),$(FILES:.s=.o))
 
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.s 
-				mkdir -p $(OBJ_DIR)
-				$(NA) $(S_FLAGS) $< -o
 #%.o: %.s
-	#$(NA) $(S_FLAGS) $<
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
+
+$(OBJ_DIR)%.o : $(SRC_DIR)%.s 
+	$(NA) $(S_FLAGS) -I $(INC_DIR) $< -o $@ 
 
 clean:
 	rm -f $(OBJ)
